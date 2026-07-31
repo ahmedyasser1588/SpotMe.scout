@@ -1,0 +1,150 @@
+{
+  "profile": {
+    "name": "Ahmed",
+    "age": 20,
+    "country": "egypt",
+    "sport": "Football",
+    "position": "cb",
+    "dominant_hand_or_foot": "right",
+    "height_cm": 183.0,
+    "weight_kg": 85.0,
+    "years_of_experience": 8.0,
+    "training_days_per_week": 4,
+    "current_team": "elmahala",
+    "previous_teams": [],
+    "competitions": [
+      "2d devision egyption leauge"
+    ],
+    "achievements": [
+      "won 2 leauges"
+    ],
+    "certificates": [],
+    "injuries": [
+      "broken arm and leauge"
+    ],
+    "coach_name": "mohamed",
+    "career_goal": "be proffisenal player",
+    "strengths_self_reported": [
+      "good leg and head"
+    ],
+    "weaknesses_self_reported": [
+      "my speed"
+    ],
+    "sport_specific_attributes": {
+      "position": "cb",
+      "preferred_foot": "right",
+      "league_level": "semi",
+      "playing_style": "build up"
+    }
+  },
+  "experience_report": {
+    "agent_name": "Experience Scout Agent",
+    "score": 70.0,
+    "summary": "Ahmed has 8 years of experience playing football, with notable achievements including winning 2 leagues, and trains 4 days a week. He plays in the semi-professional 2nd division Egyptian league and has a clear career goal of becoming a professional player.",
+    "details": {
+      "experience": 80.0,
+      "competitions": 60.0,
+      "club_history": 40.0,
+      "training_consistency": 80.0,
+      "competitive_level": 50.0
+    },
+    "evidence": [
+      "8 years of experience playing football",
+      "won 2 leagues",
+      "trains 4 days a week",
+      "plays in the semi-professional 2nd division Egyptian league",
+      "has not played for any teams before El Mahala"
+    ]
+  },
+  "mentality_report": {
+    "agent_name": "Mentality Scout Agent",
+    "score": 72.0,
+    "summary": "Ahmed demonstrates a strong motivation to become a professional player and has a clear understanding of his strengths and weaknesses. He shows a good level of discipline with 4 training days per week, but his ability to handle pressure and communicate effectively is not well-evidenced.",
+    "details": {
+      "discipline": 80,
+      "motivation": 90,
+      "leadership": 40,
+      "learning ability": 60,
+      "coachability": 70,
+      "communication": 50,
+      "handling pressure": 30
+    },
+    "evidence": [
+      "Trains 4 days a week",
+      "Career goal is to be a professional player",
+      "Acknowledges his speed as a weakness",
+      "Has won 2 leagues with his current team",
+      "Has a clear understanding of his playing style as a centre-back"
+    ]
+  },
+  "achievement_report": {
+    "agent_name": "Achievement Scout Agent",
+    "score": 60.0,
+    "summary": "Ahmed has achieved notable success in his football career, winning 2 leagues, but lacks certificates and has experienced significant injuries. His experience and training regimen are notable, but the level of competition is semi-professional.",
+    "details": {
+      "awards": 80,
+      "tournaments": 40,
+      "certificates": 0,
+      "recognitions": 60,
+      "milestones": 80
+    },
+    "evidence": [
+      "won 2 leagues",
+      "participated in 2d division Egyptian league",
+      "no certificates held",
+      "broken arm and leg injury"
+    ]
+  },
+  "development_report": {
+    "agent_name": "Development Scout Agent",
+    "score": 72.5,
+    "summary": "Ahmed has a solid foundation as a centre-back with 8 years of experience, good leg and head skills, and a suitable build-up playing style. However, his speed is a notable weakness that needs improvement. With a semi-professional league experience and a goal to become a professional player, Ahmed has potential for growth.",
+    "details": {
+      "future_potential": 75,
+      "growth_rate": 70,
+      "development_priorities": "speed improvement",
+      "suitable_competition_level": "semi-professional to professional",
+      "long-term_outlook": "positive with focused development"
+    },
+    "evidence": [
+      "won 2 leagues in the 2nd division Egyptian league",
+      "identifies speed as a weakness",
+      "has a clear career goal to become a professional player",
+      "has 8 years of experience playing football",
+      "currently plays in a semi-professional league"
+    ]
+  },
+  "head_scout_report": {
+    "overall_score": 68.5,
+    "strengths": [
+      "strong motivation to become a professional player",
+      "good level of discipline",
+      "notable achievements including winning 2 leagues",
+      "solid foundation as a centre-back with 8 years of experience"
+    ],
+    "weaknesses": [
+      "speed is a notable weakness",
+      "ability to handle pressure is not well-evidenced",
+      "communication skills are not well-evidenced",
+      "lacks certificates and has experienced significant injuries"
+    ],
+    "summary": "Ahmed is a semi-professional centre-back with 8 years of experience, a strong motivation to become a professional player, and notable achievements including winning 2 leagues. He demonstrates a good level of discipline and has a solid foundation as a centre-back, but his speed is a notable weakness that needs improvement. Ahmed has potential for growth, but needs to work on his weaknesses and gain more experience in higher-level competitions to achieve his career goal.",
+    "recommendation": "Offer Ahmed a trial with a professional team to assess his abilities in a higher-level competition and provide him with a personalized development plan to improve his speed and other weaknesses.",
+    "development_plan": [
+      "improve speed through targeted training and conditioning",
+      "work on handling pressure and developing effective communication skills",
+      "gain experience in higher-level competitions to test his abilities",
+      "develop a more well-rounded skillset to become a more effective centre-back"
+    ]
+  },
+  "explainability_report": {
+    "explanations": {
+      "experience": "The experience score of 70.0 was assigned due to Ahmed's 8 years of experience playing football, which is a significant amount of time. Additionally, his participation in the semi-professional 2nd division Egyptian league and winning 2 leagues with his current team demonstrate his ability to perform at a certain level. However, the fact that he has not played for any teams before El Mahala and the relatively lower level of competition he is currently in prevented the score from being higher.",
+      "mentality": "The mentality score of 72.0 was given because Ahmed shows a strong desire to become a professional player, which indicates a high level of motivation. His acknowledgement of his speed as a weakness also demonstrates self-awareness, and training 4 days a week showcases his discipline and commitment to improvement. Furthermore, his clear understanding of his playing style as a centre-back and the success he has achieved with his current team, including winning 2 leagues, support this score.",
+      "achievement": "The achievement score of 60.0 was assigned as Ahmed has achieved some notable successes, such as winning 2 leagues and participating in the 2nd division Egyptian league. However, the lack of certificates held and the presence of significant injuries, including a broken arm and leg, are drawbacks that prevented a higher score. Additionally, while winning 2 leagues is an achievement, the level of competition and the fact that it is in a semi-professional league may not be as prestigious as higher-level competitions.",
+      "development": "The development score of 72.5 reflects Ahmed's potential for growth and improvement. His identification of speed as a weakness and his clear career goal to become a professional player indicate a proactive approach to self-improvement. The fact that he has won 2 leagues in the 2nd division Egyptian league and has 8 years of experience playing football provides a solid foundation for further development. His current participation in a semi-professional league also offers opportunities for him to gain more experience and work towards his goal.",
+      "overall": "The overall score of 68.5 was determined by considering all aspects of Ahmed's profile. His experience, mentality, and development potential are significant strengths. However, his achievements, while notable, are somewhat limited by the level of competition and the presence of significant injuries. To achieve his career goal of becoming a professional player, Ahmed will need to address his weaknesses, particularly his speed, and seek opportunities to gain experience in higher-level competitions."
+    }
+  },
+  "generated_at": "2026-07-28T03:33:09.439327"
+}
