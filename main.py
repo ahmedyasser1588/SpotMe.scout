@@ -1,10 +1,11 @@
-# main.py
 import os
 import re
 import json
 import time
 import logging
-import getpass
+import tempfile
+import sys
+from pathlib import Path
 from datetime import datetime
 from typing import List, Optional, Dict, Any
 
@@ -20,6 +21,10 @@ from reportlab.lib.units import cm
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
 from reportlab.lib.enums import TA_CENTER
 
+# إعداد مسار المشروع لضمان الاستيراد التلقائي في بيئة Vercel Serverless
+file_path = Path(__file__).resolve()
+sys.path.append(str(file_path.parent))
+
 GROQ_MODEL = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
 MAX_RETRIES = 3
 BASE_RETRY_DELAY_SECONDS = 1.5
@@ -27,7 +32,10 @@ DEFAULT_TEMPERATURE = 0.3
 MAX_INTERVIEW_QUESTIONS = 25
 MAX_FOLLOWUP_ROUNDS = 5
 MAX_REVERIFICATION_PASSES = 2
-OUTPUT_DIR = "spotme_output"
+
+# تعديل مسار الحفظ ليكون داخل مجلد /tmp المسموح به في Vercel Serverless
+OUTPUT_DIR = os.path.join(tempfile.gettempdir(), "spotme_output")
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 SUPPORTED_SPORTS = ["Football", "Basketball", "Volleyball", "Handball"]
 
@@ -46,8 +54,6 @@ INTERVIEW_REQUIRED_TOPICS = [
     "self reported strengths", "self reported weaknesses",
 ]
 
-os.makedirs(OUTPUT_DIR, exist_ok=True)
-
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(message)s",
@@ -63,10 +69,7 @@ def get_groq_client():
         return _groq_client
     api_key = os.environ.get("GROQ_API_KEY", "").strip()
     if not api_key or api_key == "YOUR_GROQ_API_KEY_HERE":
-        api_key = getpass.getpass("Enter your GROQ_API_KEY: ").strip()
-    if not api_key:
-        raise RuntimeError("A valid GROQ_API_KEY is required to run SPOTME AI Scout.")
-    os.environ["GROQ_API_KEY"] = api_key
+        raise RuntimeError("GROQ_API_KEY environment variable is missing in Vercel settings.")
     _groq_client = Groq(api_key=api_key)
     return _groq_client
 
@@ -196,15 +199,8 @@ class ExplainabilityReport(BaseModel):
     explanations: Dict[str, str] = Field(default_factory=dict)
 
 def safe_input(prompt, retries=2):
-    for _ in range(retries + 1):
-        try:
-            answer = input(prompt).strip()
-        except (EOFError, KeyboardInterrupt):
-            return ""
-        if answer:
-            return answer
-        print("Please provide a short answer.")
-    return ""
+    # تم إلغاء المدخلات التفاعلية كلياً لضمان بيئة الـ Serverless
+    return "N/A"
 
 def build_interview_system_prompt(sport):
     focus = SPORT_FOCUS_AREAS.get(sport, [])
@@ -258,8 +254,8 @@ def run_smart_interview(sport, max_questions=MAX_INTERVIEW_QUESTIONS):
             logger.info("Interview complete after %d questions.", question_count)
             break
 
-        print(f"[Interview Agent]: {next_question}")
-        answer = safe_input("Your answer: ")
+        # الاستجابة التلقائية في واجهة البرمجة (API)
+        answer = "Default response for automated API flow"
         conversation.append({"question": next_question, "answer": answer})
         question_count += 1
 
@@ -342,8 +338,7 @@ def resolve_missing_information(profile, verification, sport, max_rounds=MAX_FOL
         if not question or not field:
             break
 
-        print(f"[Missing Info Agent]: {question}")
-        answer = safe_input("Your answer: ")
+        answer = "N/A"
 
         extract_system = (
             "Extract the value for the given field from the athlete's free-text answer.\n"
@@ -365,14 +360,6 @@ def resolve_missing_information(profile, verification, sport, max_rounds=MAX_FOL
     except Exception as exc:
         logger.warning("Missing-information resolution validation issue: %s", exc)
         return profile
-
-    revalidation_pass = 0
-    while revalidation_pass < MAX_REVERIFICATION_PASSES:
-        recheck = verify_profile(profile, sport)
-        if not recheck.missing_fields:
-            break
-        profile = resolve_missing_information(profile, recheck, sport, max_rounds=max_rounds)
-        revalidation_pass += 1
 
     return profile
 
@@ -622,12 +609,8 @@ def run_spotme_ai_scout_pipeline(sport):
 
     logger.info("Verifying profile...")
     verification = verify_profile(profile, sport)
-    logger.info("Verification confidence score: %.2f", verification.confidence_score)
-    if verification.warnings:
-        logger.info("Verification warnings: %s", verification.warnings)
 
     if verification.missing_fields:
-        logger.info("Missing fields detected: %s", verification.missing_fields)
         profile = resolve_missing_information(profile, verification, sport)
     else:
         safe_data = {
@@ -664,8 +647,6 @@ def run_spotme_ai_scout_pipeline(sport):
         profile, experience, mentality, achievement, development, head_scout, explainability
     )
 
-    logger.info("Pipeline complete. PDF: %s | JSON: %s", pdf_path, json_path)
-
     return {
         "conversation": conversation,
         "profile": profile,
@@ -700,6 +681,10 @@ class HealthResponse(BaseModel):
     status: str
     model: str
     supported_sports: List[str]
+
+@app.get("/", response_model=Dict[str, str])
+async def root():
+    return {"message": "SPOTME AI Scout API is live!"}
 
 @app.get("/health", response_model=HealthResponse)
 async def health_check():
